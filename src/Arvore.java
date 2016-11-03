@@ -93,7 +93,7 @@ public class Arvore {
 	}
 	
 	/**
-	 * @author Eduardo2w2
+	 * @author Eduardo2w22
 	 * @param no
 	 * @return Altura do n�
 	 */
