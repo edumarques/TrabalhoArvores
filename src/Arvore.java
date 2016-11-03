@@ -38,23 +38,23 @@ public class Arvore {
 	 * @author Eduardo
 	 * @param no
 	 * @param valor
-	 * @return Remove nó
+	 * @return Remove nï¿½
 	 * @throws Exception
 	 */
 	public No removerNo(No no, int valor) throws Exception {
 		if (this.raiz == null) {
-			throw new Exception("A árvore está vazia.");
+			throw new Exception("A ï¿½rvore estï¿½ vazia.");
 		} else {
 			if (valor < no.getValor()) {
 				no.setNoEsquerda(removerNo(no.getNoEsquerda(), valor));
 			} else if (valor > no.getValor()) {
 				no.setNoDireita(removerNo(no.getNoDireita(), valor));
 			} else if (no.getNoEsquerda() != null && no.getNoDireita() != null) {
-				System.out.println("Nó " + no.getValor() + " removido.");
+				System.out.println("Nï¿½ " + no.getValor() + " removido.");
 				no.setValor(encontrarMinimo(no.getNoDireita()).getValor());
 				no.setNoDireita(removerMinimo(no.getNoDireita()));
 			} else {
-				System.out.println("Nó " + no.getValor() + " removido.");
+				System.out.println("Nï¿½ " + no.getValor() + " removido.");
 				no = (no.getNoEsquerda() != null) ? no.getNoEsquerda() : no.getNoDireita();
 			}
 			return no;
@@ -64,11 +64,11 @@ public class Arvore {
 	/**
 	 * @author Eduardo
 	 * @param no
-	 * @return Remove o mínimo
+	 * @return Remove o mï¿½nimo
 	 */
 	public No removerMinimo(No no) {
 		if (no == null) {
-			System.out.println("Erro. Nó vazio.");
+			System.out.println("Erro. Nï¿½ vazio.");
 		} else if (no.getNoEsquerda() != null) {
 			no.setNoEsquerda(removerMinimo(no.getNoEsquerda()));
 			return no;
@@ -81,7 +81,7 @@ public class Arvore {
 	/**
 	 * @author Eduardo
 	 * @param no
-	 * @return Encontra valor mínimo
+	 * @return Encontra valor mï¿½nimo
 	 */
 	public No encontrarMinimo(No no) {
 		if (no != null) {
@@ -93,9 +93,9 @@ public class Arvore {
 	}
 	
 	/**
-	 * @author Eduardo
+	 * @author Eduardo2
 	 * @param no
-	 * @return Altura do nó
+	 * @return Altura do nï¿½
 	 */
 	public int alturaNo(No no){
         if(no == null){
