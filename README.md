@@ -1,2 +1,2 @@
-# TrabalhoArvores
-Trabalho sobre arvores da disciplina de LP2
+# Trabalho sobre Árvores
+Trabalho sobre árvores da disciplina de LP2
