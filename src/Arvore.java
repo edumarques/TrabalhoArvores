@@ -10,30 +10,31 @@ public class Arvore {
 	private No raiz;
 
 	/**
-	 * @author Eduardo
+	 * @author Tharles
 	 * @param no
-	 * @param valor
+	 * @param pessoa
 	 */
-	public void inserirNo(No no, int valor) {
+	public void inserirNo(No no, Pessoa pessoa) {
+		Pessoa p = new Pessoa(pessoa.getNome(),pessoa.calcularIdade(),pessoa.getCpf(),pessoa.getTelefone());
+		
 		if (this.raiz == null) {
-			this.raiz = new No(valor);
-		} else {
-			if (valor < no.getValor()) {
-				if (no.getNoEsquerda() != null) {
-					inserirNo(no.getNoEsquerda(), valor);
-				} else {
-					no.setNoEsquerda(new No(valor));
-				}
-			} else if (valor > no.getValor()) {
+			this.raiz = new No(p);
+		}else if (no.getPessoa().getNome().compareTo(pessoa.getNome()) == 0) {
+			return;
+		}else if (no.getPessoa().getNome().compareTo(pessoa.getNome()) > 0){ 
+			if (no.getNoEsquerda() != null) {
+				inserirNo(no.getNoEsquerda(), p);
+			} else {
+				no.setNoEsquerda(new No(p));
+			}
+		}else if (no.getPessoa().getNome().compareTo(pessoa.getNome()) < 0){ 
 				if (no.getNoDireita() != null) {
-					inserirNo(no.getNoDireita(), valor);
+					inserirNo(no.getNoDireita(), p);
 				} else {
-					no.setNoDireita(new No(valor));
+					no.setNoDireita(new No(p));
 				}
 			}
 		}
-	}
-
 	/**
 	 * @author Eduardo
 	 * @param no

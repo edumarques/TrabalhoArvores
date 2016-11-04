@@ -7,23 +7,23 @@
  *
  */
 public class No {
-	private int valor;
+	private Pessoa pessoa;
 	private No noEsquerda;
 	private No noDireita;
 
 	public No() {
 	}
-
-	public No(int valor) {
-		this.valor = valor;
+	
+	public No(Pessoa pessoa) {
+		this.pessoa = pessoa;
 	}
 
-	public int getValor() {
-		return valor;
+	public Pessoa getPessoa() {
+		return pessoa;
 	}
 
-	public void setValor(int valor) {
-		this.valor = valor;
+	public void setValor(Pessoa pessoa) {
+		this.pessoa = pessoa;
 	}
 
 	public No getNoEsquerda() {
@@ -44,7 +44,7 @@ public class No {
 
 	@Override
 	public String toString() {
-		return "No [valor=" + valor + "]";
+		return "No [valor=" + pessoa + "]";
 	}
 
 }
