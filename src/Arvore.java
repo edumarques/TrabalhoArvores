@@ -3,12 +3,35 @@
  */
 
 /**
- * @author Eduardo
+ * @author Eduardo, Tharles
  *
  */
 public class Arvore {
-	private No raiz;
-
+	public No raiz;
+	
+	public Arvore() {
+		this.raiz=null;
+	}
+	/**
+	 * @author Tharles
+	 * @param nome
+	 */
+	public No busca(String nome){
+		  No noatual = this.raiz;
+		  while(noatual != null){
+			  if(nome == noatual.getPessoa().getNome()){
+				  return noatual;
+			  }
+			  else if(noatual.getPessoa().getNome().compareTo(nome) > 0){
+				  noatual = noatual.getNoEsquerda();
+			  }
+			  else{
+				  noatual = noatual.getNoDireita();
+			  }
+		  }
+		  return null;
+	}
+	
 	/**
 	 * @author Tharles
 	 * @param no
@@ -36,30 +59,35 @@ public class Arvore {
 			}
 		}
 	/**
-	 * @author Eduardo
+	 * @author Tharles
 	 * @param no
-	 * @param valor
+	 * @param pessoa
 	 * @return Remove n�
 	 * @throws Exception
 	 */
-	public No removerNo(No no, int valor) throws Exception {
+	public No removerNo(No no, String pessoa) throws Exception {
 		if (this.raiz == null) {
 			throw new Exception("A �rvore est� vazia.");
 		} else {
-			if (valor < no.getValor()) {
-				no.setNoEsquerda(removerNo(no.getNoEsquerda(), valor));
-			} else if (valor > no.getValor()) {
-				no.setNoDireita(removerNo(no.getNoDireita(), valor));
-			} else if (no.getNoEsquerda() != null && no.getNoDireita() != null) {
-				System.out.println("N� " + no.getValor() + " removido.");
-				no.setValor(encontrarMinimo(no.getNoDireita()).getValor());
-				no.setNoDireita(removerMinimo(no.getNoDireita()));
-			} else {
-				System.out.println("N� " + no.getValor() + " removido.");
-				no = (no.getNoEsquerda() != null) ? no.getNoEsquerda() : no.getNoDireita();
+			if (no.getPessoa().getNome().compareTo(pessoa) > 0) {
+				no.setNoEsquerda(removerNo(no.getNoEsquerda(), pessoa));
+			} else if (no.getPessoa().getNome().compareTo(pessoa) < 0) {
+				no.setNoDireita(removerNo(no.getNoDireita(), pessoa));
+			} else{
+				if (no.getNoEsquerda() != null && no.getNoDireita() != null) {
+					System.out.println("N� " + no.getPessoa() + " removido.");
+					no.setValor(encontrarMinimo(no.getNoDireita()).getPessoa());
+					no.setNoDireita(removerMinimo(no.getNoDireita()));
+				}else if (no.getNoDireita() != null) { 
+	                no = no.getNoDireita();
+	            } else {               
+	            	no = no.getNoEsquerda();
+	            }
+				
 			}
-			return no;
+				
 		}
+		return no;
 	}
 
 	/**
@@ -94,7 +122,21 @@ public class Arvore {
 	}
 	
 	/**
-	 * @author Eduardo2w22
+	 * @author Tharles
+	 * @param no
+	 * @return Encontra valor máximo
+	 */
+	public No encontrarMaximo(No no) {
+		if (no != null) {
+			while (no.getNoDireita() != null) {
+				no = no.getNoDireita();
+			}
+		}
+		return no;
+	}
+	
+	/**
+	 * @author Eduardo
 	 * @param no
 	 * @return Altura do n�
 	 */
@@ -108,6 +150,31 @@ public class Arvore {
             return altEsq + 1;
         } else {
             return altDir + 1;
+        }
+    }
+	/**
+	 * @author Tharles
+	 * @param no
+	 * @return caminhamento prefixado 
+	 */
+	private void prefixado(No no) {
+        if (no != null) {
+            System.out.print(", " + no.getPessoa().getNome());
+            prefixado(no.getNoEsquerda());
+            prefixado(no.getNoDireita());
+        }
+	}
+
+	/**
+	 * @author Tharles
+	 * @param no
+	 * @return  caminhamento pós-fixado
+	 */
+    private void posfixado(No no) {
+        if (no != null) {
+        	posfixado(no.getNoEsquerda());
+        	posfixado(no.getNoDireita());
+            System.out.print(" " + no.getPessoa().getNome());
         }
     }
 
