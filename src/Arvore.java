@@ -16,6 +16,7 @@ public class Arvore {
 	/**
 	 * @author Eduardo, Tharles
 	 * @param nome
+	 * Busca uma nó na árvore.
 	 */
 	public No busca(String nome) {
 		No noatual = this.raiz;
@@ -35,6 +36,7 @@ public class Arvore {
 	 * @author Eduardo, Tharles
 	 * @param no
 	 * @param pessoa
+	 * Busca um nó na árvore.
 	 */
 	public void inserirNo(No no, Pessoa pessoa) {
 		if (this.raiz == null) {
@@ -60,8 +62,9 @@ public class Arvore {
 	 * @author Eduardo, Tharles
 	 * @param no
 	 * @param pessoa
-	 * @return Remove nó
+	 * @return no
 	 * @throws Exception
+	 * Remove um nó da árvore.
 	 */
 	public No removerNo(No no, String pessoa) throws Exception {
 		if (this.raiz == null) {
@@ -91,7 +94,8 @@ public class Arvore {
 	/**
 	 * @author Eduardo
 	 * @param no
-	 * @return Remove o mínimo
+	 * @return no
+	 * Busca o nó mínimo da árvore.
 	 */
 	public No removerMinimo(No no) {
 		if (no == null) {
@@ -108,7 +112,8 @@ public class Arvore {
 	/**
 	 * @author Eduardo
 	 * @param no
-	 * @return Encontra valor mínimo
+	 * @return no
+	 * Encontro o nó mínimo da árvore.
 	 */
 	public No encontrarMinimo(No no) {
 		if (no != null) {
@@ -122,7 +127,8 @@ public class Arvore {
 	/**
 	 * @author Tharles
 	 * @param no
-	 * @return Encontra valor máximo
+	 * @return no
+	 * Encontro o nó máximo da árvore
 	 */
 	public No encontrarMaximo(No no) {
 		if (no != null) {
@@ -136,7 +142,8 @@ public class Arvore {
 	/**
 	 * @author Eduardo
 	 * @param no
-	 * @return Altura do nó
+	 * @return no
+	 * Encontra a altura da árvore
 	 */
 	public int alturaNo(No no) {
 		if (no == null) {
@@ -154,7 +161,8 @@ public class Arvore {
 	/**
 	 * @author Tharles
 	 * @param no
-	 * @return caminhamento prefixado
+	 * @return no
+	 * Caminhamento pré-fixado da árvore
 	 */
 	public void prefixado(No no) {
 		if (no != null) {
@@ -167,7 +175,8 @@ public class Arvore {
 	/**
 	 * @author Tharles
 	 * @param no
-	 * @return caminhamento pós-fixado
+	 * @return no
+	 * Caminhamento pós-fixado da árvore
 	 */
 	public void posfixado(No no) {
 		if (no != null) {

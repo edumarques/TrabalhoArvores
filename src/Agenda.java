@@ -15,6 +15,7 @@ public class Agenda {
 	/**
 	 * @author Eduardo, Tharles
 	 * @param pessoa
+	 * Armazena uma pessoa na agenda.
 	 */
 	public void armazenaPessoa(Pessoa pessoa) {
 		a.inserirNo(new No(pessoa), pessoa);
@@ -22,7 +23,8 @@ public class Agenda {
 
 	/**
 	 * @author Tharles
-	 * @param pessoa
+	 * @param nome
+	 * Remove uma pessoa da agenda.
 	 */
 	public void removePessoa(String nome) throws Exception {
 		a.removerNo(a.raiz, nome);
@@ -30,7 +32,8 @@ public class Agenda {
 
 	/**
 	 * @author Tharles
-	 * @param pessoa
+	 * @param nome
+	 * Busca uma pessoa na agenda.
 	 */
 	public void buscaPessoa(String nome) {
 		a.busca(nome);
@@ -38,6 +41,7 @@ public class Agenda {
 
 	/**
 	 * @author Eduardo
+	 * Imprime toda a agenda.
 	 */
 	public void imprimeAgenda() {
 		a.prefixado(a.raiz);
@@ -46,6 +50,7 @@ public class Agenda {
 	/**
 	 * @author Eduardo
 	 * @param nome
+	 * Imprime os dados de uma pessoa da agenda.
 	 */
 	public void imprimePessoa(String nome) {
 		No n = a.busca(nome);
