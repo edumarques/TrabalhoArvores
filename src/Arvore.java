@@ -8,84 +8,82 @@
  */
 public class Arvore {
 	public No raiz;
-	
+
 	public Arvore() {
-		this.raiz=null;
+		this.raiz = null;
 	}
+
 	/**
-	 * @author Tharles
+	 * @author Eduardo, Tharles
 	 * @param nome
 	 */
-	public No busca(String nome){
-		  No noatual = this.raiz;
-		  while(noatual != null){
-			  if(nome == noatual.getPessoa().getNome()){
-				  return noatual;
-			  }
-			  else if(noatual.getPessoa().getNome().compareTo(nome) > 0){
-				  noatual = noatual.getNoEsquerda();
-			  }
-			  else{
-				  noatual = noatual.getNoDireita();
-			  }
-		  }
-		  return null;
+	public No busca(String nome) {
+		No noatual = this.raiz;
+		while (noatual != null) {
+			if (nome == noatual.getPessoa().getNome()) {
+				return noatual;
+			} else if (noatual.getPessoa().getNome().compareTo(nome) > 0) {
+				noatual = noatual.getNoEsquerda();
+			} else {
+				noatual = noatual.getNoDireita();
+			}
+		}
+		return noatual;
 	}
-	
+
 	/**
-	 * @author Tharles
+	 * @author Eduardo, Tharles
 	 * @param no
 	 * @param pessoa
 	 */
 	public void inserirNo(No no, Pessoa pessoa) {
-		Pessoa p = new Pessoa(pessoa.getNome(),pessoa.calcularIdade(),pessoa.getCpf(),pessoa.getTelefone());
-		
 		if (this.raiz == null) {
-			this.raiz = new No(p);
-		}else if (no.getPessoa().getNome().compareTo(pessoa.getNome()) == 0) {
+			this.raiz = new No(pessoa);
+		} else if (no.getPessoa().getNome().compareTo(pessoa.getNome()) == 0) {
 			return;
-		}else if (no.getPessoa().getNome().compareTo(pessoa.getNome()) > 0){ 
+		} else if (no.getPessoa().getNome().compareTo(pessoa.getNome()) > 0) {
 			if (no.getNoEsquerda() != null) {
-				inserirNo(no.getNoEsquerda(), p);
+				inserirNo(no.getNoEsquerda(), pessoa);
 			} else {
-				no.setNoEsquerda(new No(p));
+				no.setNoEsquerda(new No(pessoa));
 			}
-		}else if (no.getPessoa().getNome().compareTo(pessoa.getNome()) < 0){ 
-				if (no.getNoDireita() != null) {
-					inserirNo(no.getNoDireita(), p);
-				} else {
-					no.setNoDireita(new No(p));
-				}
+		} else if (no.getPessoa().getNome().compareTo(pessoa.getNome()) < 0) {
+			if (no.getNoDireita() != null) {
+				inserirNo(no.getNoDireita(), pessoa);
+			} else {
+				no.setNoDireita(new No(pessoa));
 			}
 		}
+	}
+
 	/**
-	 * @author Tharles
+	 * @author Eduardo, Tharles
 	 * @param no
 	 * @param pessoa
-	 * @return Remove nï¿½
+	 * @return Remove nó
 	 * @throws Exception
 	 */
 	public No removerNo(No no, String pessoa) throws Exception {
 		if (this.raiz == null) {
-			throw new Exception("A ï¿½rvore estï¿½ vazia.");
+			throw new Exception("A árvore está vazia.");
 		} else {
 			if (no.getPessoa().getNome().compareTo(pessoa) > 0) {
 				no.setNoEsquerda(removerNo(no.getNoEsquerda(), pessoa));
 			} else if (no.getPessoa().getNome().compareTo(pessoa) < 0) {
 				no.setNoDireita(removerNo(no.getNoDireita(), pessoa));
-			} else{
+			} else {
 				if (no.getNoEsquerda() != null && no.getNoDireita() != null) {
-					System.out.println("Nï¿½ " + no.getPessoa() + " removido.");
+					System.out.println("Removido.");
 					no.setValor(encontrarMinimo(no.getNoDireita()).getPessoa());
 					no.setNoDireita(removerMinimo(no.getNoDireita()));
-				}else if (no.getNoDireita() != null) { 
-	                no = no.getNoDireita();
-	            } else {               
-	            	no = no.getNoEsquerda();
-	            }
-				
+				} else if (no.getNoDireita() != null) {
+					no = no.getNoDireita();
+				} else {
+					no = no.getNoEsquerda();
+				}
+
 			}
-				
+
 		}
 		return no;
 	}
@@ -93,11 +91,11 @@ public class Arvore {
 	/**
 	 * @author Eduardo
 	 * @param no
-	 * @return Remove o mï¿½nimo
+	 * @return Remove o mínimo
 	 */
 	public No removerMinimo(No no) {
 		if (no == null) {
-			System.out.println("Erro. Nï¿½ vazio.");
+			System.out.println("Erro. Nó vazio.");
 		} else if (no.getNoEsquerda() != null) {
 			no.setNoEsquerda(removerMinimo(no.getNoEsquerda()));
 			return no;
@@ -110,7 +108,7 @@ public class Arvore {
 	/**
 	 * @author Eduardo
 	 * @param no
-	 * @return Encontra valor mï¿½nimo
+	 * @return Encontra valor mínimo
 	 */
 	public No encontrarMinimo(No no) {
 		if (no != null) {
@@ -120,11 +118,11 @@ public class Arvore {
 		}
 		return no;
 	}
-	
+
 	/**
 	 * @author Tharles
 	 * @param no
-	 * @return Encontra valor mÃ¡ximo
+	 * @return Encontra valor máximo
 	 */
 	public No encontrarMaximo(No no) {
 		if (no != null) {
@@ -134,48 +132,49 @@ public class Arvore {
 		}
 		return no;
 	}
-	
+
 	/**
 	 * @author Eduardo
 	 * @param no
-	 * @return Altura do nï¿½
+	 * @return Altura do nó
 	 */
-	public int alturaNo(No no){
-        if(no == null){
-            return 0;
-        }
-        int altEsq = alturaNo(no.getNoEsquerda());
-        int altDir = alturaNo(no.getNoDireita());
-        if(altEsq > altDir){
-            return altEsq + 1;
-        } else {
-            return altDir + 1;
-        }
-    }
-	/**
-	 * @author Tharles
-	 * @param no
-	 * @return caminhamento prefixado 
-	 */
-	private void prefixado(No no) {
-        if (no != null) {
-            System.out.print(", " + no.getPessoa().getNome());
-            prefixado(no.getNoEsquerda());
-            prefixado(no.getNoDireita());
-        }
+	public int alturaNo(No no) {
+		if (no == null) {
+			return 0;
+		}
+		int altEsq = alturaNo(no.getNoEsquerda());
+		int altDir = alturaNo(no.getNoDireita());
+		if (altEsq > altDir) {
+			return altEsq + 1;
+		} else {
+			return altDir + 1;
+		}
 	}
 
 	/**
 	 * @author Tharles
 	 * @param no
-	 * @return  caminhamento pÃ³s-fixado
+	 * @return caminhamento prefixado
 	 */
-    private void posfixado(No no) {
-        if (no != null) {
-        	posfixado(no.getNoEsquerda());
-        	posfixado(no.getNoDireita());
-            System.out.print(" " + no.getPessoa().getNome());
-        }
-    }
+	public void prefixado(No no) {
+		if (no != null) {
+			no.getPessoa().imprimeDados();
+			prefixado(no.getNoEsquerda());
+			prefixado(no.getNoDireita());
+		}
+	}
+
+	/**
+	 * @author Tharles
+	 * @param no
+	 * @return caminhamento pós-fixado
+	 */
+	public void posfixado(No no) {
+		if (no != null) {
+			posfixado(no.getNoEsquerda());
+			posfixado(no.getNoDireita());
+			no.getPessoa().imprimeDados();
+		}
+	}
 
 }

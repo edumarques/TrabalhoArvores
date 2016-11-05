@@ -22,6 +22,9 @@ public class Pessoa {
 		this.telefone = telefone;
 	}
 	
+	/**
+	 * @author Eduardo
+	 */
 	public void imprimeDados(){
 		System.out.println("Nome: " + this.getNome());
 		System.out.println("Idade: " + this.calcularIdade());
@@ -29,6 +32,10 @@ public class Pessoa {
 		System.out.println("Telefone: " + this.getTelefone());
 	}
 	
+	/**
+	 * @author Eduardo
+	 * @return idade calculada
+	 */
 	public int calcularIdade(){
 		return Year.now().getValue() - this.getAnoNascimento();
 	}
